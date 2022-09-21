@@ -1,10 +1,10 @@
 <template>
   <root>
-
+    <!--모달창-->
     <div class="black-bg" v-if="isModalOpen == true">
       <div class="white-bg">
-        <h4>상세페이지임 ㅋ</h4>
-        <p>상세페이지 내용임 ㅋ</p>
+        <h4>{{ onerooms[clickNo].title }}</h4>
+        <p>{{ onerooms[clickNo].content }}</p>
         <p @click="isModalOpen = false">닫기</p>
       </div>
     </div>
@@ -13,39 +13,25 @@
       <a v-for="v in menulist" :key="v">{{ v }}</a>
     </div>
 
-    <!-- <div v-for="product in products" :key="product">
-      <h4>{{ product }}</h4>
-      <p>80 만원</p>
-    </div> -->
-    <div>
-      <img src="./assets/room0.jpg" class="room-img">
-      <h4 @click="isModalOpen = true">{{ products[0] }} </h4>
-      <p>70 만원</p>
-      <button @click="declar[0]++">허위매물신고</button>
-      <span>신고수 : {{ declar[0] }}</span>
+    <div v-for="(o,i) in onerooms" :key="o">
+      <img :src="o.image" class="room-img">
+      <h4 @click="isModalOpen = true;clickNo = i">{{ o.title }}</h4>
+      
+      <p>{{ o.price }}만원</p>
     </div>
-    <div>
-      <img src="./assets/room1.jpg" class="room-img">
-      <h4>{{ products[1] }} </h4>
-      <p>70 만원</p>
-      <button @click="declar[1]++">허위매물신고</button>
-      <span>신고수 : {{ declar[1] }}</span>
-    </div>
-    <div>
-      <img src="./assets/room2.jpg" class="room-img">
-      <h4>{{ products[2] }} </h4>
-      <p>70 만원</p>
-      <button @click="declar[2]++">허위매물신고</button>
-      <span>신고수 : {{ declar[2] }}</span>
-    </div>
+
   </root>
 </template>
 
 <script>
+import oneroom from './assets/oneroom.js';
+
 export default {
   name: 'App',
   data(){
     return{
+      clickNo  : '',
+      onerooms : oneroom,
       isModalOpen : false,
       declar  : [0,0,0],
       menulist : ['Home','Products','About'],
