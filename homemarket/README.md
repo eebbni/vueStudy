@@ -1,4 +1,4 @@
-# instagram
+# homemarket
 
 ## Project setup
 ```
